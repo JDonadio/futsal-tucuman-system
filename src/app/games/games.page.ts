@@ -1,17 +1,17 @@
 import { Component, NgZone } from '@angular/core';
 import { SharingService } from '../services/sharing.service';
 import * as _ from 'lodash';
+import * as robin from 'roundrobin';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-games',
+  templateUrl: './games.page.html',
+  styleUrls: ['./games.page.scss'],
 })
-export class HomePage {
-
+export class GamesPage {
+  public calendar: any;
   public teams: any;
-  public players: any;
-  public positions: any;
+  private teamFor: any;
 
   constructor(
     private sharingService: SharingService,
@@ -19,10 +19,12 @@ export class HomePage {
   ) {
     this.sharingService.currentTeams.subscribe(teams => {
       this.zone.run(() => {
+        if (!teams) return;
         this.teams = teams;
-        this.positions = _.orderBy(this.teams, ['points'],['asc']);
-        console.log(teams);
-        console.log(this.positions)
+        this.teamFor = _.groupBy(teams, 'key');
+        console.log(this.teamFor);
+        this.calendar = robin(teams.length, teams);
+        console.log(this.calendar);
       });
     });
   }

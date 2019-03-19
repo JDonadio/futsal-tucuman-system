@@ -4,9 +4,13 @@
   border: 1px solid green;
   padding: 5px;
 }
-table {
+.table {
   width: 100%;
   text-transform: uppercase;
+  .vs {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .headers {
   font-weight: 600;

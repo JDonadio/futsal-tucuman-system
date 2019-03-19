@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Programación de fechas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h5>Equipos</h5>
+  <div class="table-container">
+    <ion-row>
+      <ion-col>Nombre</ion-col>
+      <ion-col text-center>División</ion-col>
+    </ion-row>
+    <div class="table">
+      <ion-row *ngFor="let t of teams">
+        <ion-col>{{t.name}}</ion-col>
+        <ion-col text-center>{{t.division}}</ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <h5>Programación</h5>
+  <div *ngFor="let c of calendar; let i = index">
+    <ion-row><h5>Fecha {{i+1}}</h5></ion-row>
+      <div class="table-container">
+        <div class="table">
+        <ion-row *ngFor="let g of c">
+          <ion-col>{{g[0].name}}</ion-col>
+          <ion-col text-center>vs</ion-col>
+          <ion-col text-right>{{g[1].name}}</ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
+</ion-content>
