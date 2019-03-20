@@ -12,7 +12,9 @@ export class MessagesService {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-  ) {}
+  ) {
+    this.loading = null;
+  }
 
   showConfirm(opts: any): Promise<any> {
     return new Promise((resolve, reject) => {
