@@ -16,6 +16,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireDatabase } from '@angular/fire/database';
 
 import { FirebaseService } from './services/firebase.service';
+import { MessagesService } from './services/messages.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { FirebaseService } from './services/firebase.service';
     SplashScreen,
     AngularFireDatabase,
     FirebaseService,
+    MessagesService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

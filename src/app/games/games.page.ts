@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { SharingService } from '../services/sharing.service';
 import * as _ from 'lodash';
 import * as robin from 'roundrobin';
+import { MessagesService } from '../services/messages.service';
 
 @Component({
   selector: 'app-games',
@@ -15,6 +16,7 @@ export class GamesPage {
 
   constructor(
     private sharingService: SharingService,
+    private messagesService: MessagesService,
     private zone: NgZone,
   ) {
     this.sharingService.currentTeams.subscribe(teams => {
@@ -27,5 +29,6 @@ export class GamesPage {
         console.log(this.calendar);
       });
     });
+    this.messagesService.showToast({ title: 'asd', subtitle: 'asd2', msg: 'pepepepe'});
   }
 }
