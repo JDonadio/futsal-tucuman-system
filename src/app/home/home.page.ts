@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 export class HomePage {
 
   public teams: any;
-  public players: any;
+  public killers: any;
   public positions: any;
 
   constructor(

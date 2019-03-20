@@ -9,49 +9,73 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h4>Posiciones</h4>
-  <div class="table-container">
-    <table>
-      <tr class="headers"><td>Equipo</td><td>PTS</td><td>J</td><td>G</td><td>P</td><td>E</td></tr>
-      <tr *ngFor="let p of positions">
-        <td>{{p.name}}</td>
-        <td>{{p.points || '0'}}</td>
-        <td>{{p.games || '0'}}</td>
-        <td>{{p.won || '0'}}</td>
-        <td>{{p.lost || '0'}}</td>
-        <td>{{p.drawn || '0'}}</td>
-      </tr>
-    </table>
-  </div>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Posiciones</ion-card-title>
+      <ion-card-subtitle>
+        <ion-row>
+          <ion-col size="5">Equipo</ion-col>
+          <ion-col>PTS</ion-col>
+          <ion-col>J</ion-col>
+          <ion-col>G</ion-col>
+          <ion-col>P</ion-col>
+          <ion-col>E</ion-col>
+        </ion-row>
+      </ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-row *ngFor="let p of positions">
+        <ion-col size="5">{{p.name}}</ion-col>
+        <ion-col>{{p.points || '0'}}</ion-col>
+        <ion-col>{{p.games || '0'}}</ion-col>
+        <ion-col>{{p.won || '0'}}</ion-col>
+        <ion-col>{{p.lost || '0'}}</ion-col>
+        <ion-col>{{p.drawn || '0'}}</ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 
-  <h4>Goleadores</h4>
-  <div class="table-container">
-    <table>
-      <tr class="headers">
-        <td>Nombre</td>
-        <td>Equipo</td>
-        <td><ion-icon name="football"></ion-icon></td>
-        <td><ion-icon name="albums"></ion-icon></td></tr>
-      <tr *ngFor="let p of players">
-        <td>{{p.name}} {{p.surname}}</td>
-        <td>{{p.team}}</td>
-        <td>{{p.score}}</td>
-        <td>{{p.cards}}</td>
-      </tr>
-    </table>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Goleadores</ion-card-title>
+      <ion-card-subtitle>
+        <ion-row>
+          <ion-col size="5">Nombre</ion-col>
+          <ion-col size="5">Equipo</ion-col>
+          <ion-col><ion-icon name="football"></ion-icon></ion-col>
+          <ion-col><ion-icon name="albums"></ion-icon></ion-col>
+        </ion-row>
+      </ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-row *ngFor="let k of killers">
+        <ion-col size="5">{{k.name}} {{k.surname}}</ion-col>
+        <ion-col size="5">{{k.team}}</ion-col>
+        <ion-col>{{k.score}}</ion-col>
+        <ion-col>{{k.cards}}</ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 
-  <h4>Equipos</h4>
-  <div class="table-container">
-    <table>
-      <tr class="headers">
-        <td>Nombre</td>
-        <td text-center>División</td></tr>
-      <tr *ngFor="let t of teams">
-        <td>{{t.name}}</td>
-        <td text-center>{{t.division}}</td>
-      </tr>
-    </table>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Equipos</ion-card-title>
+      <ion-card-subtitle>
+        <ion-row>
+          <ion-col>Nombre</ion-col>
+          <ion-col text-center>División</ion-col>
+        </ion-row>
+      </ion-card-subtitle>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-row *ngFor="let t of teams">
+        <ion-col>{{t.name}}</ion-col>
+        <ion-col text-center>{{t.division}}</ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
