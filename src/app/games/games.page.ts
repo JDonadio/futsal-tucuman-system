@@ -29,6 +29,5 @@ export class GamesPage {
         console.log(this.calendar);
       });
     });
-    this.messagesService.showToast({ title: 'asd', subtitle: 'asd2', msg: 'pepepepe'});
   }
 }
