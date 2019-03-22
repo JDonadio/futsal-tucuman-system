@@ -16,8 +16,8 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Programación',
-      url: '/games',
+      title: 'Calendario',
+      url: '/calendar',
       icon: 'football'
     },
     {

@@ -1,49 +1,48 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Programación de fechas</ion-title>
+    <ion-title>Fecha {{phase.index +1}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- <ion-card>
-    <ion-card-header>
-      <ion-card-title>Equipos</ion-card-title>
+  <ion-card *ngFor="let game of phase.games; let i = index">
+    <ion-card-header (click)="gFor[i] = !gFor[i]">
       <ion-card-subtitle>
         <ion-row>
-          <ion-col>Nombre</ion-col>
-          <ion-col text-center>División</ion-col>
+          <ion-col>{{game[0].name | uppercase}}</ion-col>
+          <ion-col text-center>vs</ion-col>
+          <ion-col text-right>{{game[1].name | uppercase}}</ion-col>
         </ion-row>
       </ion-card-subtitle>
     </ion-card-header>
     
     <ion-card-content>
-      <ion-row *ngFor="let t of teams">
-        <ion-col>{{t.name}}</ion-col>
-        <ion-col text-center>{{t.division}}</ion-col>
+      <ion-row>
+        <ion-col text-center>3</ion-col>
+        <ion-col text-center><ion-icon name="football"></ion-icon></ion-col>
+        <ion-col text-center>1</ion-col>
       </ion-row>
-    </ion-card-content>
-  </ion-card> -->
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Programación</ion-card-title>
-    </ion-card-header>
-  </ion-card>
-
-  <ion-card *ngFor="let c of calendar; let i = index">
-    <ion-card-header>
-      <ion-card-title>Fecha {{i+1}}</ion-card-title>
-    </ion-card-header>
-    
-    <ion-card-content>
-      <ion-row *ngFor="let g of c">
-        <ion-col>{{g[0].name}}</ion-col>
-        <ion-col text-center>vs</ion-col>
-        <ion-col text-right>{{g[1].name}}</ion-col>
-      </ion-row>
+      <div *ngIf="gFor[i]">
+        <ion-row>
+          <ion-col text-center>0</ion-col>
+          <ion-col text-center><ion-icon name="albums"></ion-icon></ion-col>
+          <ion-col text-center>0</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-center>0</ion-col>
+          <ion-col text-center><ion-icon name="albums"></ion-icon></ion-col>
+          <ion-col text-center>0</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col text-center>0</ion-col>
+          <ion-col text-center><ion-icon name="albums"></ion-icon></ion-col>
+          <ion-col text-center>0</ion-col>
+        </ion-row>
+        <ion-button expand="block" (click)="editGame(game)">Editar estadísticas</ion-button>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>

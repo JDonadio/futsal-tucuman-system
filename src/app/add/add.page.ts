@@ -115,7 +115,7 @@ export class AddPage implements OnInit {
       .catch(err => {
         this.onError({ msg: 'Ha ocurrido un error. ', err });
       });
-    }
+  }
     
   private onSuccess(opts: any) {
     setTimeout(() => {

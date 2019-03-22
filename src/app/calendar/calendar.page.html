@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Calendario</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="saveCalendar()" *ngIf="calendarModified">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <p>Generar</p>
+      <ion-button (click)="generateCalendar()"></ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="!calendar || !calendar[0]">
+    <p>No hay programación</p>
+  </div>
+
+  <ion-card *ngFor="let phase of calendar; let i = index" (click)="openPhase(phase, i)">
+    <ion-card-header>
+      <ion-card-title>Fecha {{i+1}}</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <ion-row *ngFor="let g of phase">
+        <ion-col>{{g[0].name | uppercase}}</ion-col>
+        <ion-col text-center>vs</ion-col>
+        <ion-col text-right>{{g[1].name | uppercase}}</ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,8 +1,8 @@
-import { Component, NgZone } from '@angular/core';
+import { Component } from '@angular/core';
 import { SharingService } from '../services/sharing.service';
+import { AlertController, ModalController } from '@ionic/angular';
+import { ModalTeamsPage } from '../modal-teams/modal-teams.page';
 import * as _ from 'lodash';
-import * as robin from 'roundrobin';
-import { MessagesService } from '../services/messages.service';
 
 @Component({
   selector: 'app-games',
@@ -10,24 +10,39 @@ import { MessagesService } from '../services/messages.service';
   styleUrls: ['./games.page.scss'],
 })
 export class GamesPage {
-  public calendar: any;
-  public teams: any;
-  private teamFor: any;
+
+  public phase: any;
+  public gFor: any;
+  public playersFor: any;
 
   constructor(
     private sharingService: SharingService,
-    private messagesService: MessagesService,
-    private zone: NgZone,
+    private alertCtrl: AlertController,
+    private modalCtrl: ModalController
   ) {
-    this.sharingService.currentTeams.subscribe(teams => {
-      this.zone.run(() => {
-        if (!teams) return;
-        this.teams = teams;
-        this.teamFor = _.groupBy(teams, 'key');
-        console.log(this.teamFor);
-        this.calendar = robin(teams.length, teams);
-        console.log(this.calendar);
+    this.gFor = {};
+    this.playersFor = {};
+    this.sharingService.currentPhase.subscribe(phase => {
+      console.log(phase);
+      
+      this.phase = phase;
+      this.phase.games.forEach(game => {
+        game.forEach(team => {
+          this.playersFor[team.key] = _.map(team.players, p => p);
+        });
       });
+      console.log(phase)
+      console.log(this.playersFor)
     });
   }
+
+  async editGame(game) {
+    const modal = await this.modalCtrl.create({
+      component: ModalTeamsPage,
+      componentProps: { game }
+    });
+    return await modal.present();
+  }
+
+
 }

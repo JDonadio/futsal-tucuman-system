@@ -13,6 +13,12 @@ export class SharingService {
   private teams = new BehaviorSubject<any>(null);
   currentTeams = this.teams.asObservable();
 
+  private phase = new BehaviorSubject<any>(null);
+  currentPhase = this.phase.asObservable();
+
+  private calendar = new BehaviorSubject<any>(null);
+  currentCalendar = this.calendar.asObservable();
+
   constructor(
     private db: AngularFireDatabase,
   ) {
@@ -28,6 +34,10 @@ export class SharingService {
       snap.forEach(data => { teams.push({ key: data.key, ...data.val() }) });
       this.setTeams(teams);
     });
+    var calendar = this.db.database.ref('calendar');
+    calendar.on('value', (snap: any) => {
+      this.setCalendar(snap.val());
+    });
   }
   
   setDivisions(divisions: any) {
@@ -36,5 +46,13 @@ export class SharingService {
   
   setTeams(teams: any) {
     this.teams.next(teams);
+  }
+  
+  setPhase(phase: any) {
+    this.phase.next(phase);
+  }
+  
+  setCalendar(calendar: any) {
+    this.calendar.next(calendar);
   }
 }

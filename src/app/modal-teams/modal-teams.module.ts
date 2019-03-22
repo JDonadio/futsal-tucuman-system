@@ -5,13 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GamesPage } from './games.page';
-import { ModalTeamsPageModule } from '../modal-teams/modal-teams.module';
+import { ModalTeamsPage } from './modal-teams.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: GamesPage
+    component: ModalTeamsPage
   }
 ];
 
@@ -20,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    ModalTeamsPageModule,
+    RouterModule.forChild(routes)
   ],
-  declarations: [GamesPage]
+  declarations: [ModalTeamsPage]
 })
-export class GamesPageModule {}
+export class ModalTeamsPageModule {}
